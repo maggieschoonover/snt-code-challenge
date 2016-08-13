@@ -38,34 +38,6 @@ class CreateHomeWxFactsTable extends Migration
             $table->timestamp('timestamp')->nullable();
         });
 
-        //Import data from file
-        // i had to str_replace the backslash on windows dev system... but works on linux, too
-        $filename = str_replace("\\", "/", storage_path('database/HomeWeatherFacts.txt'));
-
-        ini_set('auto_detect_line_endings', true);
-        $line = fgets(fopen($filename, 'r'));
-
-        $eol = "\r\n";
-
-        if(strpos($line, "\r\n") !== false) {
-            $eol = "\r\n";
-        }
-        else if (strpos($line, "\r") !== false) {
-            $eol = "\r";
-        }
-        else if (strpos($line, "\n") !== false) {
-            $eol = "\n";
-        }
-
-        $query = "LOAD DATA LOCAL INFILE '".$filename."' INTO TABLE home_wx_facts
-            FIELDS TERMINATED BY '|'
-            ENCLOSED BY '\"'
-            LINES TERMINATED BY '".$eol."'
-            IGNORE 1 LINES
-            (WeatherDetailsId,WeatherDetailsCity,WeatherDetailsState,WeatherDetailsCounty,WeatherDetailsStateFIPS,WeatherDetailsCountyFIPS,WeatherDetailsStationID,WeatherDetailsMaxTempFahrenheit,WeatherDetailsMinTempFahrenheit,WeatherDetailsAvgTempFahrenheit,WeatherDetailsDewPointFahrenheit,WeatherDetailsPressureIn,WeatherDetailsPrecipitationInch,WeatherDetailsSnowfallInch,WeatherDetailsThunderstormsDays,WeatherDetailsHeavyFogMiles,WeatherDetailsWindSpeedMph,WeatherDetailsHeatingDegreeDays,WeatherDetailsColdDegreeDays,WeatherDetailsYear,WeatherDetailsMonth,timestamp)
-            SET timestamp = CURRENT_TIMESTAMP;";
-
-        DB::unprepared($query);
     }
 
     /**
