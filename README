@@ -1,0 +1,55 @@
+# Install Docker for Mac
+
+# QUICK METHOD: Start Docker
+Use the "Docker Quickstart Terminal" in Applications
+Allow to run until new terminal prompt is displayed
+
+# TRADITIONAL METHOD: Start Containers for the project from regular terminal window
+$ cd ~/repos/sntchallenge
+$ docker-compose up -d
+
+# ADD THE BELOW TO YOUR HOSTS FILE
+127.0.0.1 local.sntchallenge.com
+
+# URL - still have to setup HTTPS for docker later
+http://local.sntchallenge.com
+
+# CHMOD ctl file for perission to execute
+$ cd ~/repos/snt-code-challenge
+$ sudo chmod 755 ctl
+
+-------
+
+# WORKING DIRECTORY FOR APP FILES
+~/repos/snt-code-challenge/sntchallenge.com/public_html
+
+# HELPFUL COMMANDS
+# To SSH into snt-code-challenge apache or mysql containers
+$ ./ctl apache  #enter the apahce container
+$ ./ctl mysql   #enter the mysql  container
+
+# To shut down Docker Containers
+$ docker-compose down
+# Clean up dangling volumes
+$ docker-compose rm -v
+
+# To shut down Docker Machine
+$ docker-compose stop
+
+---------
+
+# Sequel Pro Setup
+
+# Settings for Sequel Pro - Standard
+Host: db
+Username: root
+Password: 2gwHG!hv!wKL
+
+Add snt_challenge user:
+Username: snt_challenge
+Password: 2gwHG!hv!wKL
+
+Add or Change Host for new sntchallenge user
+Host: %
+
+Give full permissions for snt_challenge user to snt_challenge db
