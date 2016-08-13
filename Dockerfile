@@ -16,6 +16,10 @@ RUN apt-get update && \
 		php5-mcrypt \
 		php5-mysqlnd \
         nano
+        php-pdo \
+        php-xml \
+        php-xdebug \
+        tcpdump
 
 RUN a2enmod \
             php5 \
