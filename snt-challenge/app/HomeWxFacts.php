@@ -52,8 +52,8 @@ class HomeWxFacts extends Model
             ENCLOSED BY '\"'
             LINES TERMINATED BY '".$eol."'
             IGNORE 1 LINES
-            (WeatherDetailsId,WeatherDetailsCity,WeatherDetailsState,WeatherDetailsCounty,WeatherDetailsStateFIPS,WeatherDetailsCountyFIPS,WeatherDetailsStationID,WeatherDetailsMaxTempFahrenheit,WeatherDetailsMinTempFahrenheit,WeatherDetailsAvgTempFahrenheit,WeatherDetailsDewPointFahrenheit,WeatherDetailsPressureIn,WeatherDetailsPrecipitationInch,WeatherDetailsSnowfallInch,WeatherDetailsThunderstormsDays,WeatherDetailsHeavyFogMiles,WeatherDetailsWindSpeedMph,WeatherDetailsHeatingDegreeDays,WeatherDetailsColdDegreeDays,WeatherDetailsYear,WeatherDetailsMonth,timestamp)
-            SET timestamp = CURRENT_TIMESTAMP;";
+            (WeatherDetailsId,WeatherDetailsCity,WeatherDetailsState,WeatherDetailsCounty,WeatherDetailsStateFIPS,WeatherDetailsCountyFIPS,WeatherDetailsStationID,WeatherDetailsMaxTempFahrenheit,WeatherDetailsMinTempFahrenheit,WeatherDetailsAvgTempFahrenheit,WeatherDetailsDewPointFahrenheit,WeatherDetailsPressureIn,WeatherDetailsPrecipitationInch,WeatherDetailsSnowfallInch,WeatherDetailsThunderstormsDays,WeatherDetailsHeavyFogMiles,WeatherDetailsWindSpeedMph,WeatherDetailsHeatingDegreeDays,WeatherDetailsColdDegreeDays,WeatherDetailsYear,WeatherDetailsMonth,created_at,updated_at)
+            SET created_at = CURRENT_TIMESTAMP,updated_at = CURRENT_TIMESTAMP;";
 
         DB::unprepared($query);
     }

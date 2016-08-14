@@ -23,5 +23,9 @@ Route::get('/wx-facts/filter/{page?}/{column?}/{direction?}',[
 	'uses' => 'WxFactsController@showFiltered'
 ]);
 
+Route::get('/wx-facts/updateCityState/{id}/{city}/{state}',[
+	'uses' => 'WxFactsController@updateCityState'
+]);
+
 Route::resource('wx-facts', 'WxFactsController');
 

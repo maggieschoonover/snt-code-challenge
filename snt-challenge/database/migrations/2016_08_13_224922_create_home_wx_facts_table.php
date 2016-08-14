@@ -35,7 +35,7 @@ class CreateHomeWxFactsTable extends Migration
             $table->integer('WeatherDetailsColdDegreeDays')->nullable();
             $table->char('WeatherDetailsYear',4)->nullable();
             $table->char('WeatherDetailsMonth',2)->nullable();
-            $table->timestamp('timestamp')->nullable();
+            $table->timestamps();
         });
 
     }

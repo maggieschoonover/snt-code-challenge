@@ -39,7 +39,7 @@ class WxFactsController extends Controller
     }
 
     /**
-     * Return All wx data.
+     * Return All wx data as JSON.
      */
     public function showAll()
     {
@@ -50,6 +50,9 @@ class WxFactsController extends Controller
 
     /**
      * Return paginated list of all wx data.
+     * @param $page = items per page
+     * @param $column = order by column
+     * @param $direction = order by direction 
      */
     public function showFiltered($page = 50, $column = 'timestamp', $direction = 'asc')
     {
@@ -57,6 +60,25 @@ class WxFactsController extends Controller
                     ->orderBy($column, $direction)
                     ->paginate($page);
         return $data;
+    }
+
+       /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @param  string  $city
+     * @param  char(2)  $state
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCityState($id, $city, $state)
+    {
+        
+        $wxFacts = $this->wxFacts->find($id);
+        $wxFacts->WeatherDetailsCity = $city;
+        $wxFacts->WeatherDetailsState = $state;
+
+        $wxFacts->save();
     }
 
     /**
