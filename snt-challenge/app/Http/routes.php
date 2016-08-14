@@ -20,16 +20,20 @@ Route::get('/wx-facts/all',[
 	'uses' => 'WxFactsController@showAll'
 ]);
 
-//return filtered values from home_wx_facts table and paginate
+/*
+* return filtered values from home_wx_facts table and paginate
+* Restful method 1: defined parameters
+* e.g. /wx-facts/filter/50/WeatherDetailsYear/asc
+*/
 Route::get('/wx-facts/filter/{page?}/{column?}/{direction?}',[
 	'uses' => 'WxFactsController@showFiltered'
 ]);
 
 /*
 * update city, state for row in home_wx_facts table 
-* e.g. /wx-fact/updateCityState?id=1234&city=Somewhere&state=IA
+* Restful method 2: Request dynamic parameters
+* e.g. /wx-facts/updateCityState?id=1234&city=Somewhere&state=IA
 */
-// Route::get('/wx-facts/updateCityState/{id}/{city}/{state}',[
 Route::get('/wx-facts/updateCityState',[
 	'uses' => 'WxFactsController@updateCityState'
 ]);

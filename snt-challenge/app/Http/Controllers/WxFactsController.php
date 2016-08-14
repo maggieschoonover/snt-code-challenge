@@ -24,10 +24,9 @@ class WxFactsController extends Controller
      * @param  HomeWxFacts  $wxFacts
      * @return void
      */
-    public function __construct(HomeWxFacts $wxFacts, Request $request)
+    public function __construct(HomeWxFacts $wxFacts)
     {
         $this->wxFacts = $wxFacts;
-        $this->request = $request;
     }
 
     /**
