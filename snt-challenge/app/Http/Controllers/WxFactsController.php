@@ -60,7 +60,7 @@ class WxFactsController extends Controller
         $params = Route::current()->parameters();
         $validator = Validator::make($params, [
             'page' => 'integer',
-            'column' => 'alpha',
+            'column' => 'alpha|in:WeatherDetailsMaxTempFahrenheit,WeatherDetailsMinTempFahrenheit,WeatherDetailsAvgTempFahrenheit,WeatherDetailsDewPointFahrenheit,WeatherDetailsPressureIn,WeatherDetailsPrecipitationInch,WeatherDetailsSnowfallInch,WeatherDetailsThunderstormsDays,WeatherDetailsHeavyFogMiles,WeatherDetailsWindSpeedMph,WeatherDetailsHeatingDegreeDays,WeatherDetailsColdDegreeDays,WeatherDetailsYear,WeatherDetailsMonth,timestamp',
             'direction' => 'alpha|in:asc,desc',
         ]);
 
@@ -75,7 +75,8 @@ class WxFactsController extends Controller
     }
 
     /**
-     * Update the specified resource in the db.
+     * Update city, state of the specified resource in the db.
+     * NOTE: you probably shouldn't do this to 3rd-party wx data.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
