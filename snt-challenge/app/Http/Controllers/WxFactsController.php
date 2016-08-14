@@ -8,7 +8,6 @@ use App\Http\Requests;
 use App\HomeWxFacts;
 use Validator;
 use Route;
-// use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class WxFactsController extends Controller
 {   
