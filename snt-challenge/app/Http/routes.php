@@ -15,14 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//return all values from home_wx_facts table as JSON
 Route::get('/wx-facts/all',[
 	'uses' => 'WxFactsController@showAll'
 ]);
 
+//return filtered values from home_wx_facts table and paginate
 Route::get('/wx-facts/filter/{page?}/{column?}/{direction?}',[
 	'uses' => 'WxFactsController@showFiltered'
 ]);
 
+//update city, state for row in home_wx_facts table 
 Route::get('/wx-facts/updateCityState/{id}/{city}/{state}',[
 	'uses' => 'WxFactsController@updateCityState'
 ]);
