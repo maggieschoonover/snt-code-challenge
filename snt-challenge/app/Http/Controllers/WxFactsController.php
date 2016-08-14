@@ -76,8 +76,8 @@ class WxFactsController extends Controller
         return $data;
     }
 
-       /**
-     * Update the specified resource in storage.
+    /**
+     * Update the specified resource in the db.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -105,7 +105,7 @@ class WxFactsController extends Controller
 
         $wxFacts->save();
 
-        return('WeatherDetailsId='. $request->id .' has been updated.');
+        return $wxFacts;
     }
 
     /**

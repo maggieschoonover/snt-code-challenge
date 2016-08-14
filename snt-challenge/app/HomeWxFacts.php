@@ -30,6 +30,11 @@ class HomeWxFacts extends Model
 
 
     //******* FUNCTIONS *********//
+
+    /*
+    * Load data infile from storage
+    * parse and add to database
+    */
     static function loadWxDataInfile($filename)
     {
     	ini_set('auto_detect_line_endings', true);
