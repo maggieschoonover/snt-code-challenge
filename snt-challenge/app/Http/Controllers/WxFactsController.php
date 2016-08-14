@@ -15,7 +15,6 @@ class WxFactsController extends Controller
      * The wxFacts model instance.
      */
     protected $wxFacts;
-    protected $request;
 
      /**
      * Create a new controller instance.
