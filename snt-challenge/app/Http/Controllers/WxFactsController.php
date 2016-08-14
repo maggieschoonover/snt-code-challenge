@@ -83,7 +83,6 @@ class WxFactsController extends Controller
      * @param  char(2)  $state
      * @return \Illuminate\Http\Response
      */
-    // public function updateCityState()
     public function updateCityState(Request $request)
     {
         // dd($request->all());
