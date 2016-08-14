@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/wx-facts/all',[
+	'uses' => 'WxFactsController@showAll'
+]);
+
+Route::get('/wx-facts/filter?page={page}&filter={filter}&direction={dir}',[
+	'uses' => 'WxFactsController@showFiltered'
+]);
+
+Route::resource('wx-facts', 'WxFactsController');
+
