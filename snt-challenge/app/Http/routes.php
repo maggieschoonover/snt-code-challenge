@@ -25,8 +25,12 @@ Route::get('/wx-facts/filter/{page?}/{column?}/{direction?}',[
 	'uses' => 'WxFactsController@showFiltered'
 ]);
 
-//update city, state for row in home_wx_facts table 
-Route::get('/wx-facts/updateCityState/{id}/{city}/{state}',[
+/*
+* update city, state for row in home_wx_facts table 
+* e.g. /wx-fact/updateCityState?id=1234&city=Somewhere&state=IA
+*/
+// Route::get('/wx-facts/updateCityState/{id}/{city}/{state}',[
+Route::get('/wx-facts/updateCityState',[
 	'uses' => 'WxFactsController@updateCityState'
 ]);
 

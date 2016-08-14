@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\HomeWxFacts;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Validator;
+use Route;
+// use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class WxFactsController extends Controller
 {   
@@ -15,7 +16,7 @@ class WxFactsController extends Controller
      * The wxFacts model instance.
      */
     protected $wxFacts;
-    // protected $request;
+    protected $request;
 
      /**
      * Create a new controller instance.
@@ -23,9 +24,10 @@ class WxFactsController extends Controller
      * @param  HomeWxFacts  $wxFacts
      * @return void
      */
-    public function __construct(HomeWxFacts $wxFacts)
+    public function __construct(HomeWxFacts $wxFacts, Request $request)
     {
         $this->wxFacts = $wxFacts;
+        $this->request = $request;
     }
 
     /**
@@ -58,15 +60,15 @@ class WxFactsController extends Controller
      */
     public function showFiltered($page = 50, $column = 'timestamp', $direction = 'asc')
     {
-
-        $validator = Validator::make($request->all(), [
+        $params = Route::current()->parameters();
+        $validator = Validator::make($params, [
             'page' => 'integer',
-            'column' => 'alpha|exists:home_wx_facts',
+            'column' => 'alpha',
             'direction' => 'alpha|in:asc,desc',
         ]);
 
         if ($validator->fails()) {
-            return($validator);
+            dd($validator);
         }
 
         $data = $this->wxFacts
@@ -84,25 +86,27 @@ class WxFactsController extends Controller
      * @param  char(2)  $state
      * @return \Illuminate\Http\Response
      */
-    public function updateCityState($id, $city, $state)
+    // public function updateCityState()
+    public function updateCityState(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
-            'id' => 'unique:home_wx_facts,WeatherDetailsId',
-            'city' => 'string',
-            'state' => 'alpha|size:2',
+            'id' => 'required|integer',
+            'city' => 'required|string',
+            'state' => 'required|alpha|size:2',
         ]);
 
         if ($validator->fails()) {
-            return($validator);
+            dd($validator);
         }
 
-        $wxFacts = $this->wxFacts->find($id);
-        $wxFacts->WeatherDetailsCity = $city;
-        $wxFacts->WeatherDetailsState = $state;
+        $wxFacts = $this->wxFacts->findOrFail($request->id);
+        $wxFacts->WeatherDetailsCity = $request->city;
+        $wxFacts->WeatherDetailsState = $request->state;
 
         $wxFacts->save();
 
-        return('Row where WeatherDetailsId=$id has been updated');
+        return('WeatherDetailsId='. $request->id .' has been updated.');
     }
 
     /**
