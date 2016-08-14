@@ -13,6 +13,7 @@ class WxFactsController extends Controller
      * The wxFacts model instance.
      */
     protected $wxFacts;
+    protected $request;
 
      /**
      * Create a new controller instance.
@@ -50,9 +51,11 @@ class WxFactsController extends Controller
     /**
      * Return paginated list of all wx data.
      */
-    public function showFiltered($page = 50, $filter = "", $dir = "asc")
+    public function showFiltered($page = 50, $column = 'timestamp', $direction = 'asc')
     {
-        $data = $this->wxFacts->paginate($page);
+        $data = $this->wxFacts
+                    ->orderBy($column, $direction)
+                    ->paginate($page);
         return $data;
     }
 

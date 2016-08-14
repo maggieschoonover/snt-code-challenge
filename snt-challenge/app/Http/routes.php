@@ -19,7 +19,7 @@ Route::get('/wx-facts/all',[
 	'uses' => 'WxFactsController@showAll'
 ]);
 
-Route::get('/wx-facts/filter?page={page}&filter={filter}&direction={dir}',[
+Route::get('/wx-facts/filter/{page?}/{column?}/{direction?}',[
 	'uses' => 'WxFactsController@showFiltered'
 ]);
 
