@@ -53,3 +53,9 @@ Add or Change Host for new sntchallenge user
 Host: %
 
 Give full permissions for snt_challenge user to snt_challenge db
+
+---------
+# SNT CHALLENGE FUNCTIONS
+> run artisan migrations
+> run task scheduler jobs to populate db data
+> hit one of three endpoints to view home_wx_facts data (see routes.php file)
